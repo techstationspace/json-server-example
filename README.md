@@ -98,14 +98,21 @@ Also when doing requests, it's good to know that:
 
 # Play with Curl
 
-curl -d "@post3.json" -H "Content-Type: application/json" -X POST http://localhost:3000/posts
+## POST
+curl -v -d "@post3.json" -H "Content-Type: application/json" -X POST http://localhost:3000/posts
 
 
-curl -d "title=value1&author=value2" -H "Content-Type: application/x-www-form-urlencoded"  -X POST http://localhost:3000/posts
+curl -v -d "title=value1&author=value2" -H "Content-Type: application/x-www-form-urlencoded"  -X POST http://localhost:3000/posts
 
 
-curl -d "@post2.json" -X POST http://localhost:3000/posts
+curl -v -d "@post2.json" -X POST http://localhost:3000/posts
 
+## PUT
 
+If the post with id 3 exists, the code below will update it:
+
+```bash
+curl -v -d "@put3.json" -H "Content-Type: application/json" -X PUT http://localhost:3000/posts/3
+```
 
 More about CURL: https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
