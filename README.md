@@ -28,7 +28,7 @@ Your DB is a JSON file.
 }
 ```
 
-All the the first level keys of your JSON are exposed as resources on a specific path:
+All the first level keys of your JSON are exposed as resources on a specific path:
 
 ```
   http://localhost:3000/posts
@@ -36,7 +36,7 @@ All the the first level keys of your JSON are exposed as resources on a specific
   http://localhost:3000/profile
 ```
 
-If add a key (ex: "pizzas" )
+If you add a key (ex: "pizzas" ):
 
 
 ```js
@@ -66,7 +66,7 @@ If add a key (ex: "pizzas" )
 }
 ```
 
-a new route is added:
+a new route is added ("http://localhost:3000/pizzas"):
 
 ```
   http://localhost:3000/posts
