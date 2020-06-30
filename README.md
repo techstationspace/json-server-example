@@ -4,9 +4,15 @@ Is a super simple package that allow you to quickly prototype a JSON API.
 
 [Json-server DOC](https://github.com/typicode/json-server#getting-started)
 
+Install JSON Server
+
+```
+npm install -g json-server
+```
+
 Your DB is a JSON file. 
 
-```js
+```json
 {
   "posts": [
     {
@@ -28,6 +34,13 @@ Your DB is a JSON file.
 }
 ```
 
+Start JSON Server
+
+```bash
+json-server --watch db.json
+```
+
+
 All the first level keys of your JSON are exposed as resources on a specific path:
 
 ```
@@ -39,7 +52,7 @@ All the first level keys of your JSON are exposed as resources on a specific pat
 If you add a key (ex: "pizzas" ):
 
 
-```js
+```json
 {
   "posts": [
     {
@@ -76,15 +89,23 @@ a new route is added ("http://localhost:3000/pizzas"):
 ```
 
 
+Also when doing requests, it's good to know that:
+
+- If you make POST, PUT, PATCH or DELETE requests, changes will be automatically and safely saved to `db.json` using [lowdb](https://github.com/typicode/lowdb).
+- Your request body JSON should be object enclosed, just like the GET output. (for example `{"name": "Foobar"}`)
+- Id values are not mutable. Any `id` value in the body of your PUT or PATCH request will be ignored. Only a value set in a POST request will be respected, but only if not already taken.
+- A POST, PUT or PATCH request should include a `Content-Type: application/json` header to use the JSON in the request body. Otherwise it will return a 2XX status code, but without changes being made to the data.
+
 # Play with Curl
-
-curl -d "@post2.json" -X POST http://localhost:3000/posts
-
 
 curl -d "@post3.json" -H "Content-Type: application/json" -X POST http://localhost:3000/posts
 
--H "Content-Type: application/json"
 
 curl -d "title=value1&author=value2" -H "Content-Type: application/x-www-form-urlencoded"  -X POST http://localhost:3000/posts
 
 
+curl -d "@post2.json" -X POST http://localhost:3000/posts
+
+
+
+More about CURL: https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
